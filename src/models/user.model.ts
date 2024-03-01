@@ -1,12 +1,11 @@
 import { Schema, model } from "mongoose";
 import {User, UserModel} from  '../types/user.type';
+import { EMAIL_REGEX, PHONE_NUMBER_REGEX } from '../utils/constants'
 
 const Users = new Schema <User, UserModel>({
-    username:{
+    name:{
         type: String,
         required: true,
-        unique: true,
-        index: true,
         trim: true
     },
     email:{
@@ -14,7 +13,8 @@ const Users = new Schema <User, UserModel>({
         required: true,
         unique: true,
         index: true,
-        trim: true
+        trim: true,
+        match : [EMAIL_REGEX,"Please enter a valid email"]
     },
 
     password:{
@@ -24,6 +24,21 @@ const Users = new Schema <User, UserModel>({
 
     age:{
         type:Number
+    },
+    phoneNumber:{
+        type: String,
+        required: true,
+        trim: true,
+        match: [PHONE_NUMBER_REGEX, 'Please enter a valid phonenumber']
+
+    },
+    createdAt:{
+        type: Date,
+        default: ()=> new Date()
+    },
+    lastModified:{
+        type: Date,
+        default: ()=> new Date()
     }
 })
 

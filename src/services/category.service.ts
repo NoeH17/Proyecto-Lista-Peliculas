@@ -10,37 +10,41 @@ class CategoryServices{
 
         return newCategory;
     }
-    async findAll(){
-        const categories = await Categories.find().catch((error)=>{
+
+    async findAll() {
+      const categories = await Categories.find().catch((error) => {
         console.log('Error while connecting to the DB', error)
-        })
-        if (!categories){
-            throw boom.notFound('There are not categories');
-        }
-
-        return categories;
+      })
+  
+      if (!categories) {
+        throw boom.notFound('There are not categories')
+      }
+  
+      return categories
     }
-
-    async findById(id: string){
-        const category = await Categories.findById(id).catch((error)=>{
-            console.log('Error while connecting to the DB', error)
-        })
-
-        if(!category){
-            throw boom.notFound("Category not found")
-        }
-        return category
+  
+    async findById(id: string) {
+      const category = await Categories.findById(id).catch((error) => {
+        console.log('Error while connecting to the DB', error)
+      })
+  
+      if (!category) {
+        throw boom.notFound('Category not found')
+      }
+  
+      return category
     }
-
-    async findByName (name: string){
-        const category = await Categories.findOne({name}).catch((error)=>{
-            console.log('Error while connecting to the DB', error)
-        })
-        if(!category){
-            throw boom.notFound('Category not found')
-        }
+  
+    async findByName(name: string) {
+      const category = await Categories.findOne({ name }).catch((error) => {
+        console.log('Error while connecting to the DB', error)
+      })
+  
+      if (!category) {
+        throw boom.notFound('Category not found')
+      }
+      return category
     }
-    
 }
 
 

@@ -2,10 +2,14 @@ import type {Model} from 'mongoose';
 
 export type User = {
     id?: String
-    username: String,
+    name: String,
     email:  String,
     password: String,
-    age: number
+    age: String,
+    phoneNumber: string,
+    createdAt?: Date,
+    lastModified?: Date
+
 }
 
 export type UserModel = Model<User>
