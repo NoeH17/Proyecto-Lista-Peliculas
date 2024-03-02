@@ -23,7 +23,7 @@ const Users = new Schema <User, UserModel>({
     },
 
     age:{
-        type:Number
+        type: String
     },
     phoneNumber:{
         type: String,
