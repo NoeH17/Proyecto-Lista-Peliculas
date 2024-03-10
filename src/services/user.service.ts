@@ -15,7 +15,10 @@ class UserService{
             throw boom.badRequest('Could not create user')
           }
 
-        return newUser;
+        /*return newUser;*/
+        const newUserObject = newUser.toJSON()
+        delete newUserObject.password
+        return newUserObject
     }
 
    
@@ -40,7 +43,10 @@ class UserService{
           throw boom.notFound('User not found')
         }
     
-        return user
+        //return user
+        const userObject = user.toJSON()
+        delete userObject.password
+        return userObject
       }
 
 
