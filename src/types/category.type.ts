@@ -1,9 +1,9 @@
-import type {Model} from 'mongoose'
+import type { Model } from 'mongoose'
 
 export type Category = {
-    id?: String
-    name: String
-    description?: String
+  id?: string
+  name: string
+  description?: string
 }
 
 export type CategoryModel = Model<Category>
