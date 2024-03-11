@@ -9,6 +9,7 @@ const routerApi = (app) => {
   router.use('/categories', CategoryRouter)
   router.use('/users', UserRouter)
   router.use('/auth', AuthRouter)
+  router.use('/movies', UserRouter)
 }
 
 export default routerApi
