@@ -25,9 +25,17 @@ router.post(
     passport.authenticate('jwt', { session: false }),
     async (req: UserRequestType, res, next) => {
       try {
+        //obtener filtros del req.query
         const { user } = req
+        const filters = req.query
+        /*
+          {
+            title: "Los Increibles",
+            director: "Chabelo"
+          }
+        */
         console.log(user)
-        const movies = await service.findAll()
+        const movies = await service.findAll(filters)
         res.status(200).json(movies)
       } catch (error) {
         next(error)

@@ -10,8 +10,8 @@ class MovieService {
         return newMovie;
     }
 
-    async findAll() {
-        const movies = await Movies.find().catch((error) => {
+    async findAll(filters) { 
+        const movies = await Movies.find({...filters}).catch((error) => {
             console.log('Error while connecting to the DB', error)
         })
     
