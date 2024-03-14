@@ -24,8 +24,9 @@ router.get(
   async (req: UserRequestType, res, next) => {
     try {
       const { user } = req
+      const filters = req.query
       console.log(user)
-      const categories = await service.findAll()
+      const categories = await service.findAll(filters)
       res.status(200).json(categories)
     } catch (error) {
       next(error)

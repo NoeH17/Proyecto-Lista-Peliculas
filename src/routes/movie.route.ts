@@ -3,6 +3,8 @@ import {Movie} from '../types/movie.type'
 import MovieService  from '../services/movie.service'
 import passport from 'passport'
 import { UserRequestType } from '../types/user.type'
+import { CategoryRequestType } from '../types/category.type'
+import { ObjectId } from 'mongoose'
 
 const router = express.Router()
 const service = new MovieService()
@@ -11,9 +13,10 @@ const service = new MovieService()
 router.post(
     '/',
     passport.authenticate('jwt', { session: false }),
-    async (req, res) => {
+    async (req: CategoryRequestType, res) => {
+      const {category: sub} = req
       const movie: Movie = req.body
-      const newMovie = await service.create(movie)
+      const newMovie = await service.create(movie, sub as unknown as ObjectId)
   
       res.status(201).json(newMovie)
     }
@@ -23,7 +26,7 @@ router.post(
   router.get(
     '/',
     passport.authenticate('jwt', { session: false }),
-    async (req: UserRequestType, res, next) => {
+    async (req: CategoryRequestType, res, next) => {
       try {
         //obtener filtros del req.query
         const { user } = req

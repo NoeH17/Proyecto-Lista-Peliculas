@@ -11,17 +11,17 @@ class CategoryService {
     return newCategory
   }
 
-  async findAll() {
-    const categories = await Categories.find().catch((error) => {
-      console.log('Error while connecting to the DB', error)
-    })
-
-    if (!categories) {
-      throw boom.notFound('There are not categories')
+  async findAll(filters) { 
+        const categories = await Categories.find({...filters}).catch((error) => {
+            console.log('Error while connecting to the DB', error)
+        })
+    
+        if (!categories) {
+            throw boom.notFound('There are not categories')
+        }
+    
+        return categories
     }
-
-    return categories
-  }
 
   async findById(id: string) {
     const category = await Categories.findById(id).catch((error) => {

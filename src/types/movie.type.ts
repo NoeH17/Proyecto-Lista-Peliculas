@@ -1,4 +1,5 @@
 import type { Model } from 'mongoose'
+import { Category } from './category.type'
 
 export type Movie = {
     id?: string
@@ -10,7 +11,7 @@ export type Movie = {
     synopsis: string
     cast: string[]
     imageUrl: string
-
+    category: Category
 }
 
 export type MovieModel = Model<Movie>
