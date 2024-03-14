@@ -2,11 +2,11 @@ import { ObjectId } from 'mongoose'
 import Movies from '../models/movie.model'
 import {Movie, MovieModel} from '../types/movie.type'
 import boom from '@hapi/boom'
-import {CATEGORY_REFERENCE} from '../models/category.model'
+
 
 class MovieService {
-    async create(movie: Movie, categoryId: ObjectId){
-        const newMovie = await Movies.create({...movie, category: categoryId}).catch((error)=>{
+    async create(movie: Movie){
+        const newMovie = await Movies.create({...movie}).catch((error)=>{
             console.log('Could not save Movie', error)
         })
 

@@ -1,7 +1,7 @@
 import { Schema, model } from 'mongoose'
 import { Category, CategoryModel } from '../types/category.type'
 
-export const CATEGORY_REFERENCE = 'Category';
+export const CATEGORY_REFERENCE = 'Category'
 
 const Categories = new Schema<Category, CategoryModel>({
   name: {

@@ -16,7 +16,7 @@ router.post(
     async (req: CategoryRequestType, res) => {
       const {category: sub} = req
       const movie: Movie = req.body
-      const newMovie = await service.create(movie, sub as unknown as ObjectId)
+      const newMovie = await service.create(movie)
   
       res.status(201).json(newMovie)
     }

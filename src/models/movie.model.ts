@@ -46,8 +46,8 @@ const Movies = new Schema<Movie, MovieModel>({
 
     category: {
         type: Schema.Types.ObjectId,
-        ref: 'CATEGORY_REFERENCE',
+        ref: CATEGORY_REFERENCE,
     }
 })
 
-export default model('MOVIE_REFERENCE', Movies)
+export default model(MOVIE_REFERENCE, Movies)
