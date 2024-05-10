@@ -11,17 +11,33 @@ class CategoryService {
     return newCategory
   }
 
-  async findAll(filters) { 
-        const categories = await Categories.find({...filters}).catch((error) => {
-            console.log('Error while connecting to the DB', error)
-        })
-    
-        if (!categories) {
-            throw boom.notFound('There are not categories')
-        }
-    
-        return categories
+  
+  async findSecondCategory() {
+    const categories = await Categories.find().sort({ _id: 1 }).limit(2).catch((error) => {
+      console.log('Error while connecting to the DB', error);
+      throw boom.internal('Internal server error');
+    });
+  
+    if (!categories || categories.length < 2) {
+      throw boom.notFound('There are not enough categories');
     }
+  
+    return categories[1];
+  }
+  
+  
+
+  async findAll() {
+    const categories = await Categories.find().catch((error) => {
+      console.log('Error while connecting to the DB', error)
+    })
+
+    if (!categories) {
+      throw boom.notFound('There are not categories')
+    }
+
+    return categories
+  }
 
   async findById(id: string) {
     const category = await Categories.findById(id).catch((error) => {
@@ -44,6 +60,8 @@ class CategoryService {
       throw boom.notFound('Category not found')
     }
   }
+
 }
 
 export default CategoryService
+

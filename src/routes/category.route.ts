@@ -24,9 +24,8 @@ router.get(
   async (req: UserRequestType, res, next) => {
     try {
       const { user } = req
-      const filters = req.query
       console.log(user)
-      const categories = await service.findAll(filters)
+      const categories = await service.findAll()
       res.status(200).json(categories)
     } catch (error) {
       next(error)
@@ -34,7 +33,7 @@ router.get(
   }
 )
 
-router.get(
+/*router.get(
   '/:id',
   passport.authenticate('jwt', { session: false }),
   async (req, res, next) => {
@@ -45,7 +44,7 @@ router.get(
       next(error)
     }
   }
-)
+)*/
 
 router.get(
   '/',
@@ -59,5 +58,17 @@ router.get(
     }
   }
 )
+
+
+router.get('/findSecondCategory', async (req, res, next) =>{
+  try{
+    const categoryS = await service.findSecondCategory()
+    res.status(200).json(categoryS)
+  } catch (error){
+    next(error)
+  }
+})
+
+
 
 export default router

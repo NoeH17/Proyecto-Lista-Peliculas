@@ -14,6 +14,7 @@ class MovieService {
 
         return existingMovie.populate([{ path: 'category', strictPopulate: false }]);
     }
+    
 
     async findAll(filters) { 
         const movies = await Movies.find({...filters}).populate([{ path: 'category', strictPopulate: false }]).catch((error) => {
@@ -25,6 +26,19 @@ class MovieService {
         }
     
         return movies
+    }
+
+    async findSecondMovie(){
+      const movies = await Movies.find().sort({ _id: 1}).limit(2).catch((error)=>{
+        console.log('Error while connecting to the DB', error);
+        throw boom.internal('Internal server error');
+      });
+
+      if(!movies || movies.length < 2){
+        throw boom.notFound('There are not enough categories');
+      }
+
+      return movies[1];
     }
 
 

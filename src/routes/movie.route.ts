@@ -9,6 +9,15 @@ import { ObjectId } from 'mongoose'
 const router = express.Router()
 const service = new MovieService()
 
+router.get('/findSecondMovie', async (req, res, next) =>{
+  try{
+    const secondMovie = await service.findSecondMovie();
+    res.status(200).json(secondMovie);
+  } catch (error){
+    next(error);
+  }
+});
+
 
 router.post(
     '/',
