@@ -15,7 +15,7 @@ const Movies = new Schema<Movie, MovieModel>({
     },
     director: {
         type: String,
-        required: true,
+        //required: true,
         trim: true
     },
     year: {
