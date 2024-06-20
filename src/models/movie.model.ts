@@ -2,6 +2,7 @@ import { Schema, model } from 'mongoose'
 import { Movie, MovieModel } from '../types/movie.type'
 import {  } from './category.model'
 import {CATEGORY_REFERENCE} from '../models/category.model'
+import { USER_REFERENCE } from './user.model'
 
 export const MOVIE_REFERENCE = 'Movie'
 
@@ -47,6 +48,11 @@ const Movies = new Schema<Movie, MovieModel>({
     category: {
         type: Schema.Types.ObjectId,
         ref: CATEGORY_REFERENCE,
+    },
+    
+    user:{
+        type: Schema.Types.ObjectId,
+        ref: USER_REFERENCE
     }
 })
 
